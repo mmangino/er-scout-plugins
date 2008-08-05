@@ -1,0 +1,13 @@
+options:
+  host:
+    name: Host
+    notes: The slave host to monitor
+    default: 127.0.0.1
+  username:
+    name: Username
+    notes: The MySQL username to use
+    default: root
+  password:
+    name: Password
+    notes: The password for the mysql user
+    default: 
