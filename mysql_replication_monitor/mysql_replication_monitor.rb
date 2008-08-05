@@ -26,7 +26,7 @@ class MysqlReplicationMonitor < Scout::Plugin
       if h.nil? 
         error("Replication not configured")
       elsif h["Slave_IO_Running"] == "Yes" and h["Slave_SQL_Running"] == "Yes"
-        report("OK")
+        report(h["Seconds_Behind_Master"])
       else
         alert("Replication not running","IO Slave: #{h["Slave_IO_Running"]}\nSQL Slave: #{h["Slave_SQL_Running"]}")
       end
