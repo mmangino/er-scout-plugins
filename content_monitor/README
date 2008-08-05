@@ -1,0 +1,3 @@
+A simple monitor that will fetch a given URL and make sure it contains a string. This is useful for making sure you don't get a maintenance page or an error page.
+
+This plugin requires that the mechanize library be installed

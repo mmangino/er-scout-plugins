@@ -1,0 +1,9 @@
+options:
+  url:
+    name: URL
+    notes: make sure you include the http://
+    default: http://www.elevatedrails.com
+  content:
+    name: Expected Content
+    notes: the string to look for in the page
+    default: Elevated Rails Inc. All rights reserved.

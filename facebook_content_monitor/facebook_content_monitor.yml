@@ -1,0 +1,17 @@
+options:
+  url:
+    name: URL
+    notes: make sure you include the http://
+    default: http://apps.facebook.com/growing
+  content:
+    name: Expected Content
+    notes: the string to look for in the page
+    default: Recently Received Flowers
+  username:
+    name: Facebook Username
+    notes: This should be a test user
+    default: 
+  password:
+    name: Facebook Password
+    notes: the password for the Facebook User
+    default: 
