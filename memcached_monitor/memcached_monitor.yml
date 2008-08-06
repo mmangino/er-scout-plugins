@@ -1,0 +1,18 @@
+options:
+  host:
+    name: Host
+    notes: The host to monitor
+    default: 127.0.0.1
+  port:
+    name: Port
+    notes: The port starling is running on
+    default: 11211
+  key:
+    name: Key to use for testing
+    notes: This key will be both read and set 
+    default: memcached_monitor_key
+  timeout: 
+    name: Timeout
+    notes: maximum amount of time to wait for a response
+    default: 0.25
+  
