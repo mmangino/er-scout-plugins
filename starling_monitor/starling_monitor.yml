@@ -1,0 +1,18 @@
+options:
+  host:
+    name: Host
+    notes: The host to monitor
+    default: 127.0.0.1
+  port:
+    name: Port
+    notes: The port starling is running on
+    default: 61613
+  queue_re:
+    name: Name Reqular Expresssion
+    notes: Pattern to test against queue names to select queues to monitor 
+    default: 
+  max_depth: 
+    name: Maximum Items
+    notes: Alert if the queue contains more items than this
+    default: 4000
+  
