@@ -1,3 +1,5 @@
+require 'time'
+require 'date'
 class MissingLibrary < StandardError; end
 class MysqlReplicationMonitor < Scout::Plugin
 
@@ -24,11 +26,12 @@ class MysqlReplicationMonitor < Scout::Plugin
       setup_mysql
       h=connection.query("show slave status").fetch_hash
       if h.nil? 
-        error("Replication not configured")
+        error("Replication not configured") 
       elsif h["Slave_IO_Running"] == "Yes" and h["Slave_SQL_Running"] == "Yes"
         report("Seconds Behind Master"=>h["Seconds_Behind_Master"])
       else
-        alert("Replication not running","IO Slave: #{h["Slave_IO_Running"]}\nSQL Slave: #{h["Slave_SQL_Running"]}")
+        alert("Replication not running",
+          "IO Slave: #{h["Slave_IO_Running"]}\nSQL Slave: #{h["Slave_SQL_Running"]}") unless in_ignore_window?
       end
     rescue  MissingLibrary=>e
       error("Could not load all required libraries",
@@ -40,5 +43,19 @@ class MysqlReplicationMonitor < Scout::Plugin
     end
   end
 
+  def in_ignore_window?
+    if s=option(:ignore_window_start) && e=option(:ignore_window_end)
+      start_time = Time.parse("#{Date.today} #{s}")
+      end_time = Time.parse("#{Date.today} #{e}")
+      
+      if start_time<end_time
+        return(Time.now > start_time and Time.now < end_time)
+      else
+        return(Time.now > start_time or Time.now < end_time)
+      end
+    else
+      false  
+    end
+  end
 
 end
