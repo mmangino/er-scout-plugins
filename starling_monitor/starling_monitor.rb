@@ -17,6 +17,7 @@ class StarlingMonitor < Scout::Plugin
       end
     end
     self.connection=Starling.new("#{option(:host)}:#{option(:port)}")
+    @report = {}
   end
   
     
